@@ -42,22 +42,14 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                <motion.span
-                  className="block font-serif text-6xl md:text-8xl font-bold text-primary-foreground tracking-tight"
-                  initial={{ y: 40, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
-                >
-                  LKB
-                </motion.span>
-                <motion.span
-                  className="block font-sans text-xl md:text-2xl font-light text-accent tracking-[0.3em] mt-2"
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.7, duration: 0.5 }}
-                >
-                  BUILDERS
-                </motion.span>
+                <motion.img
+                  src="/lkb_logo4.png"
+                  alt="LKB Builders"
+                  className="w-64 md:w-96 h-auto object-contain mx-auto"
+                  initial={{ y: 40, opacity: 0, scale: 0.8 }}
+                  animate={{ y: 0, opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+                />
               </motion.div>
             </motion.div>
 
