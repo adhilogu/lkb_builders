@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X , ArrowRight } from 'lucide-react';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -29,11 +29,20 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
+  // Check if navbar should have glass effect (scrolled OR not on home page)
+  const isHomePage = location.pathname === '/';
+  const shouldUseGlassEffect = isScrolled || !isHomePage;
+
+  // Function to get the appropriate logo based on navbar state
+  const getLogo = () => {
+    return shouldUseGlassEffect ? "/lkb_logo3.png" : "/lkb_logo4.png";
+  };
+
   return (
     <>
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-          isScrolled
+          shouldUseGlassEffect
             ? 'glass-effect border-b border-border/50 py-4'
             : 'bg-transparent py-6'
         }`}
@@ -42,17 +51,22 @@ const Navbar = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <motion.div
-              className="font-serif text-2xl md:text-3xl font-bold text-primary"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              LKB
-              <span className="text-accent font-sans text-sm font-medium tracking-wider ml-2">
-                BUILDERS
-              </span>
-            </motion.div>
+          
+          {/* Logo with Dynamic Change */}
+          <Link to="/" className="flex items-center">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={getLogo()}
+                src={getLogo()}
+                alt="LKB Builders Logo"
+                className="h-10 w-auto object-contain"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+              />
+            </AnimatePresence>
           </Link>
 
           {/* Desktop Navigation */}
@@ -72,13 +86,16 @@ const Navbar = () => {
             ))}
             <Link
               to="/contact"
-              className="btn-luxury px-6 py-2.5 rounded-full text-sm font-medium text-primary-foreground overflow-hidden"
+              className="btn-luxury px-6 py-2.5 rounded-full text-sm font-medium text-primary-foreground overflow-hidden flex items-center gap-2"
             >
-              <span className="relative z-10">Get in Touch</span>
+              <span className="relative z-10 flex items-center gap-2">
+                Get in Touch
+                <ArrowRight size={16} className="z-10" />
+              </span>
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden p-2 text-foreground hover:text-accent transition-colors"
@@ -104,6 +121,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             />
+
             <motion.div
               className="relative h-full flex flex-col items-center justify-center gap-8 px-6"
               initial={{ opacity: 0, y: 20 }}

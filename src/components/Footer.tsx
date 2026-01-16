@@ -49,15 +49,17 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link to="/" className="inline-block mb-6">
-              <span className="font-serif text-3xl font-bold">
-                LKB
-                <span className="text-accent font-sans text-sm font-medium tracking-wider ml-2">
-                  BUILDERS
-                </span>
-              </span>
+         <div className="lg:col-span-2">
+            <Link to="/" className="flex items-center p-4">
+              <motion.img
+                src="/lkb_logo4.png"
+                alt="Logo"
+                className="h-10 w-auto object-contain"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              />
             </Link>
+
             <p className="text-primary-foreground/70 mb-6 max-w-sm">
               Crafting exceptional homes with uncompromising quality, 
               innovative design, and meticulous attention to detail since 2010.

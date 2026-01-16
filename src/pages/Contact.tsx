@@ -95,12 +95,12 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Call Us',
-      details: ['+91 98437 99917']
+      details: ['+91 98437 99917','+91 87547 52541']
     },
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['logumtp@gmail.com']
+      details: ['lkbbuilders@gmail.com','info@lkbbuilders.com']
     },
     {
       icon: Clock,
